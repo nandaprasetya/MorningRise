@@ -23,11 +23,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morning Rise | Produk</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="plugins/tailwind.css">
     <script src="plugins/tailwindcss.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<nav class="flex justify-between">
+        <a class="nav-logo font-semibold" href="index.php">MORNING RISE</a>
+        <div class="nav-link">
+            <a href="index.php">Home</a>
+            <a href="about.php">About</a>
+            <a href="produk.php">Produk</a>
+            <?php if (isset($_SESSION['id_user'])): ?>
+            <div class="ml-6 flex">
+                <a href="cart.php">
+                    <img src="media/bag.png" alt="">
+                </a>
+                <a href="profile.php">
+                    <img class="rounded-full" src="media/user.png" alt="">
+                </a>
+            </div>
+            <?php else: ?>
+            <a href="">Log in</a>
+            <a href="">Sign Up</a>
+            <?php endif; ?>
+        </div>
+    </nav>
     <div class="header-view-produk px-10 w-full h-fit">
         <div class="search-area w-full h-fit flex justify-center">
             <form id="searchForm" class="outer-search rounded-md bg-gray-100 w-3/6 relative flex items-center">
@@ -126,10 +147,10 @@
                         </div>
                     </div>
                 </div>
-                <img class="preview-produk w-full" src="media/uploads/<?php echo $row['gambar']; ?>" alt="">
+                <img class="preview-produk w-full" data-id-produk="<?php echo $row['id_produk']; ?>" src="media/uploads/<?php echo $row['gambar']; ?>" alt="">
             </div>
-            <h5 class="judul-produk mt-2 font-semibold"><?php echo $row['nama'] ?></h5>
-            <h6 class="harga-produk font-semibold">Rp. <?php echo number_format($row['harga'], 0, ',', '.'); ?></h5>
+            <h5 class="judul-produk mt-2 font-semibold" data-id-produk="<?php echo $row['id_produk']; ?>"><?php echo $row['nama'] ?></h5>
+            <h6 class="harga-produk font-semibold" data-id-produk="<?php echo $row['id_produk']; ?>">Rp. <?php echo number_format($row['harga'], 0, ',', '.'); ?></h5>
         </div>
 
         <?php } } ?>
@@ -179,13 +200,16 @@
         });
 
         $(".preview-produk").click(function(){
-            window.location.href = "detailProduk.php";
+            let idProduk = $(this).attr('data-id-produk');
+            window.location.href = "detailProduk.php?id_produk=" + idProduk +"";
         });
         $(".judul-produk").click(function(){
-            window.location.href = "detailProduk.php";
+            let idProduk = $(this).attr('data-id-produk');
+            window.location.href = "detailProduk.php?id_produk=" + idProduk +"";
         });
         $(".harga-produk").click(function(){
-            window.location.href = "detailProduk.php";
+            let idProduk = $(this).attr('data-id-produk');
+            window.location.href = "detailProduk.php?id_produk=" + idProduk +"";
         });
 
         let isFilter = 0;

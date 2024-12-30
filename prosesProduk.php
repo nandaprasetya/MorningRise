@@ -116,4 +116,32 @@ if($action == 'like'){
     
 }
 
+if($action == 'addCart'){
+    $idUser = $_SESSION['id_user'];
+    $idProduk = $_POST['idProduk'];
+    $jumlahBrg = 1;
+
+    $sql = "SELECT * FROM cart WHERE id_user = ? AND id_produk = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $idUser, $idProduk);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $sql = "UPDATE cart SET jumlah_barang = jumlah_barang + 1 WHERE id_user = ? AND id_produk = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $idUser, $idProduk);
+    } else {
+        $sql = "INSERT INTO cart (id_user, id_produk, jumlah_barang) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iii", $idUser, $idProduk, $jumlahBrg);
+    }
+
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Gagal menambahkan produk ke keranjang.']);
+    }
+    exit;
+}
 ?>

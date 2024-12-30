@@ -57,7 +57,7 @@
         </div>
         <div class="text-preview-detail-produk flex flex-col w-4/12">
             <h1><?php echo $produk['nama']; ?></h1>
-            <h2><?php echo number_format($produk['harga'], 0, ',', '.'); ?></h2>
+            <h2>Rp. <?php echo number_format($produk['harga'], 0, ',', '.'); ?></h2>
             <p><?php echo $produk['desk']; ?></p>
             <div class="input-qty flex items-center mt-10 mb-5">
                 <h6 id="kurangJumlah" class="font-semibold flex items-center justify-center">-</h6>
@@ -94,7 +94,44 @@
                 $("#banyakProduk").val(kurangProduk);
             }
         });
-        
+        $("#addCartBtn").click(function(){
+            let idProduk = $(this).attr('data-id-produk');
+            $.ajax({
+                url: 'prosesProduk.php', 
+                type: 'POST',
+                data: { action: 'addCart', idProduk: idProduk}, 
+                dataType: 'json',
+                success: function (response) {
+                    console.log("berhasil");
+                },
+                error: function () {
+                    console.log('Terjadi kesalahan. Silakan coba lagi.');
+                }
+            });
+        });
+        $("#likeBtn").click(function(){
+            let idProduk = $(this).attr('data-id-produk');
+            $.ajax({
+                url: 'prosesProduk.php', 
+                type: 'POST',
+                data: { action: 'like', idProduk: idProduk}, 
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status === 'error') {
+                        window.location.href = "index.php";
+                    } else if (response.status === 'success') {
+                        if (response.liked) {
+                            $(".like-icon").attr("src", "media/liked.png");
+                        } else {
+                            $(".like-icon").attr("src", "media/like.png");
+                        }
+                    }
+                },
+                error: function () {
+                    console.log('Terjadi kesalahan. Silakan coba lagi.');
+                }
+            });
+        });
     </script>
 </body>
 </html>
