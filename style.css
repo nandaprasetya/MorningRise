@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Poppins", serif;
+}
+
+.header-view-produk{
+    padding-top: 100px;
+}
+
+.outer-search input{
+    border: none !important;
+    outline: none !important;
+}
+
+.outer-search input:focus{
+    outline: none !important;
+}
+
+.search-btn{
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.search-btn img{
+    height: 20px;
+    aspect-ratio: 1/1;
+}
+
+.filter-search{
+    cursor: pointer;
+}
+
+.kategori-produk h6{
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.img-box-produk{
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.img-box-produk img{
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+
+.outer-like-produk{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.outer-gizi-produk{
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+}
+
+.like-produk{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.like-produk img{
+    width: 40%;
+    aspect-ratio: 1/1;
+}
+
+.box-gizi-produk{
+    transition: 0.3s ease;
+    transform: translateY(40%);
+    opacity: 0;
+    cursor: pointer;
+}
+
+.box-gizi-produk.active{
+    transition: 0.3s ease;
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+.col-gizi-produk{
+    transition: 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translateY(40%);
+}
+
+.col-gizi-produk.active{
+    transition: 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translateY(0%);
+}
+
+.like-produk{
+    opacity: 0;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.like-produk.active{
+    opacity: 1;
+    transition: 0.3s ease;
+}
+
+.like-produk img{
+    transform: scale(0);
+    transition: 0.3s ease;
+    transition-delay: 0.1s;
+}
+
+.like-produk img.active{
+    transform: scale(1);
+    transition: 0.3s ease;
+    transition-delay: 0.1s;
+}
+
+.judul-produk, .harga-produk{
+    cursor: pointer;
+}
+
+.outer-login{
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    display: flex;
+}
+
+.outer-login-form{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer-login-form .login-form{
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form h1{
+    text-align: center;
+    font-weight: 500;
+}
+
+.outer-login .image-login{
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.image-login img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    margin: 0px;
+    border: none;
+}
+
+.login-form form{
+    width: 80%;
+    height: fit-content;
+    margin-top: 18px;
+}
+
+.login-form form input{
+    width: 100%;
+    padding: 18px 24px;
+    border-radius: 10px;
+    border: 2px solid #c7c7c7;
+    margin: 5px 0px 20px ;
+}
+
+.login-form form label{
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.login-form form button{
+    width: 100%;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ed9c32;
+    font-weight: 500;
+    color: #f8f8f8;
+    font-size: 18px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.login-form form p{
+    color: #4e4e4e;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.login-form form p a{
+    color: #ed9c32;
+    text-decoration: none;
+    font-weight: 500;
+}
