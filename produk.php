@@ -160,16 +160,13 @@
                 data: { action: 'like', idProduk: idProduk}, 
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response);
                     if (response.status === 'error') {
                         console.log('error');
                     } else if (response.status === 'success') {
                         if (response.liked) {
-                            console.log('Produk berhasil disukai!');
                             $this.find("img").attr("src", "media/liked.png");
                             $this.attr('data-like', 'liked');
                         } else {
-                            console.log('Like dihapus!');
                             $this.find("img").attr("src", "media/like.png");
                             $this.attr('data-like', 'like');
                         }

@@ -106,7 +106,6 @@ if($action == 'like'){
         echo json_encode(['status' => 'success', 'liked' => false]);
         exit;
     } else {
-        // Jika belum like, tambahkan like
         $query = "INSERT INTO likes (id_user, id_produk) VALUES (?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('ii', $idUser, $idProduk);
@@ -116,4 +115,5 @@ if($action == 'like'){
     }
     
 }
+
 ?>

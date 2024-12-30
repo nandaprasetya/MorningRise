@@ -7,6 +7,41 @@
     font-family: "Poppins", serif;
 }
 
+body{
+    background-color: #fefefe;
+}
+
+nav{
+    width: 100%;
+    height: fit-content;
+    padding: 32px;
+    background-color: #fff;
+    position: fixed;
+    z-index: 100;
+}
+
+nav .nav-logo{
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+nav .nav-link{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link a{
+    margin: 0px 15px;
+    letter-spacing: 1px;
+    width: fit-content;
+}
+
+.nav-link a img{
+    width: 30px;
+    height: 30px;
+}
+
 .header-view-produk{
     padding-top: 100px;
 }
@@ -209,4 +244,97 @@
     color: #ed9c32;
     text-decoration: none;
     font-weight: 500;
+}
+
+.outer-detail-produk{
+    padding-top: 120px;
+}
+
+.img-preview-detail-produk img{
+    width: 100%;
+    /* aspect-ratio: 1/1; */
+    object-fit: cover;
+}
+
+.text-preview-detail-produk h1{
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.text-preview-detail-produk h2{
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 10px 0px;
+}
+
+.text-preview-detail-produk h3{
+    font-size: 18px;
+    font-weight: 500;
+    color: #4e4e4e;
+    letter-spacing: 2px;
+}
+
+.text-preview-detail-produk p{
+    color: #4e4e4e;
+    letter-spacing: 1px;
+    margin-top: 15px;
+}
+
+.input-qty{
+    width: fit-content;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.input-qty h6{
+    padding: 12px;
+    height: 100%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    background-color: #efefef;
+}
+
+.input-qty input{
+    text-align: center;
+    outline: none;
+    outline-width: 0px;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+}
+
+.input-qty input:focus{
+    outline: none;
+    outline-width: 0px;
+}
+
+#kurangJumlah{
+    border: 1px solid #dadada;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#tambahJumlah{
+    border: 1px solid #dadada;
+    border-radius: 0px 10px 10px 0px;
+}
+
+#addCartBtn, #likeBtn{
+    cursor: pointer;
+    margin: 10px 0px;
+}
+
+#likeBtn{
+    border: 1px solid #c7c7c7;
+}
+
+#addCartBtn img, #likeBtn img{
+    width: 20px;
+    height: 20px;
+}
+
+#addCartBtn h6, #likeBtn h6{
+    font-weight: 500;
+    margin-left: 10px;
+    line-height: 100%;
 }
