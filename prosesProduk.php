@@ -119,7 +119,7 @@ if($action == 'like'){
 if($action == 'addCart'){
     $idUser = $_SESSION['id_user'];
     $idProduk = $_POST['idProduk'];
-    $jumlahBrg = 1;
+    $jumlahBrg = $_POST['jmlBarang'];
 
     $sql = "SELECT * FROM cart WHERE id_user = ? AND id_produk = ?";
     $stmt = $conn->prepare($sql);
@@ -128,9 +128,12 @@ if($action == 'addCart'){
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $sql = "UPDATE cart SET jumlah_barang = jumlah_barang + 1 WHERE id_user = ? AND id_produk = ?";
+        $row = $result->fetch_assoc();
+        $currentJumlahBarang = $row['jumlah_barang'];
+        $updateJmlBarang = $jumlahBrg + $currentJumlahBarang;
+        $sql = "UPDATE cart SET jumlah_barang = ? WHERE id_user = ? AND id_produk = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ii", $idUser, $idProduk);
+        $stmt->bind_param("iii", $updateJmlBarang , $idUser, $idProduk);
     } else {
         $sql = "INSERT INTO cart (id_user, id_produk, jumlah_barang) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
@@ -143,5 +146,87 @@ if($action == 'addCart'){
         echo json_encode(['success' => false, 'message' => 'Gagal menambahkan produk ke keranjang.']);
     }
     exit;
+}
+
+if($action == 'updateJumlah'){
+    $idCart = $_POST['idCart'];
+    $jumlahBaru = $_POST['jumlahBaru'];
+
+    $sql = "UPDATE cart SET jumlah_barang = ? WHERE id_cart = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $jumlahBaru, $idCart);
+
+    if ($stmt->execute()) {
+        echo json_encode(['status' => 'success', 'message' => 'Quantity updated successfully']);
+        exit;
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to update quantity']);
+        exit;
+    }
+}
+
+if ($action === 'deleteItem') {
+    $idCart = $_POST['idCart'];
+
+    $sql = "DELETE FROM cart WHERE id_cart = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idCart);
+
+    if ($stmt->execute()) {
+        echo json_encode(['status' => 'success', 'message' => 'Item deleted successfully']);
+        exit;
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to delete item']);
+        exit;
+    }
+}
+
+
+if($action == 'updateSummary'){
+    $idUser = $_SESSION['id_user'];
+
+    $sqlCart = "SELECT c.jumlah_barang, p.harga, p.nama 
+                FROM cart c 
+                JOIN produk p ON c.id_produk = p.id_produk 
+                WHERE c.id_user = ?";
+    $stmtCart = $conn->prepare($sqlCart);
+    $stmtCart->bind_param("i", $idUser);
+    $stmtCart->execute();
+    $resultCart = $stmtCart->get_result();
+
+    $subtotal = 0;
+    $cartItems = [];
+    while ($row = $resultCart->fetch_assoc()) {
+        $subtotal += $row['jumlah_barang'] * $row['harga'];
+        $cartItems[] = [
+            'nama' => $row['nama'],
+            'jumlah_barang' => $row['jumlah_barang']
+        ];
+    }
+
+    $diskonKode = $_POST['diskonKode'];
+    $diskonAmount = 0;
+
+    if (!empty($diskonKode)) {
+        $sqldiskon = "SELECT jumlah_diskon FROM diskon WHERE kode_diskon = ? AND isAktif = 1";
+        $stmtdiskon = $conn->prepare($sqldiskon);
+        $stmtdiskon->bind_param("s", $diskonKode);
+        $stmtdiskon->execute();
+        $resultdiskon = $stmtdiskon->get_result();
+
+        if ($resultdiskon->num_rows > 0) {
+            $diskonData = $resultdiskon->fetch_assoc();
+            $diskonAmount = $diskonData['jumlah_diskon'];
+        }
+    }
+
+    $grandTotal = $subtotal - $diskonAmount;
+
+    echo json_encode([
+        'subtotal' => $subtotal,
+        'diskon' => $diskonAmount,
+        'grandTotal' => $grandTotal,
+        'cartItems' => $cartItems
+    ]);
 }
 ?>

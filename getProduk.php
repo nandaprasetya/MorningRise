@@ -3,6 +3,25 @@ include 'koneksi.php';
 
 $action = $_GET['action'];
 
+
+if($action == 'updateCartView'){
+    $idProduk = $_GET['idProduk'];
+    $sql = "SELECT harga FROM produk WHERE id_produk = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idProduk);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+        echo json_encode(['harga' => $data['harga']]);
+        exit;
+    } else {
+        echo json_encode(['error' => 'Produk tidak ditemukan']);
+        exit;
+    }
+}
+
 if($action == 'allProduk'){
     $sql = "SELECT * FROM produk";
     $result = $conn->query($sql);

@@ -12,12 +12,16 @@
     }else{
         header("Location: index.php");
     }
+    $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
 
+    if ($idUser) {
     $idProduk = $produk['id_produk'];
-    $idUser = $_SESSION['id_user'];
     $sqlLikes = "SELECT id_like FROM likes WHERE id_user = $idUser AND id_produk = $idProduk";
     $resultLikes = $conn->query($sqlLikes);
     $like = $resultLikes->fetch_assoc();
+    } else {
+        $like = null;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,8 +50,8 @@
                 </a>
             </div>
             <?php else: ?>
-            <a href="">Log in</a>
-            <a href="">Sign Up</a>
+            <a href="login.php">Log in</a>
+            <a href="signup.php">Sign Up</a>
             <?php endif; ?>
         </div>
     </nav>
@@ -96,10 +100,11 @@
         });
         $("#addCartBtn").click(function(){
             let idProduk = $(this).attr('data-id-produk');
+            let jmlBarang = $("#banyakProduk").val();
             $.ajax({
                 url: 'prosesProduk.php', 
                 type: 'POST',
-                data: { action: 'addCart', idProduk: idProduk}, 
+                data: { action: 'addCart', idProduk: idProduk, jmlBarang: jmlBarang }, 
                 dataType: 'json',
                 success: function (response) {
                     console.log("berhasil");

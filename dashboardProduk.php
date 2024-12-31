@@ -12,9 +12,9 @@ include 'koneksi.php';
     <script src="plugins/tailwindcss.js"></script>
     <style>
         td {
-            white-space: normal; /* Membungkus teks */
-            word-wrap: break-word; /* Memungkinkan pemotongan kata panjang */
-            overflow-wrap: break-word; /* Menjaga agar teks panjang tidak meluas keluar kolom */
+            white-space: normal; 
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
         }  
 
         .outer-table{
@@ -31,7 +31,6 @@ include 'koneksi.php';
     </style>
 </head>
 <body>
-<!-- Modal Update -->
 <div id="updateModal" class="fixed w-full inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="w-9/12 bg-white p-6 rounded-lg">
         <h2 class="text-lg font-semibold mb-4">Update Produk</h2>
@@ -174,7 +173,7 @@ include 'koneksi.php';
     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable({
-            "responsive": true, // Membuat DataTable responsif
+            "responsive": true,
             
             });
         });
@@ -265,17 +264,16 @@ include 'koneksi.php';
 
 
         $('#updateForm').on('submit', function (e) {
-            e.preventDefault(); // Mencegah reload halaman
+            e.preventDefault();
 
-            // Ambil data form
             const formData = new FormData(this);
 
             $.ajax({
-                url: 'prosesProduk.php', // URL file PHP untuk proses update
+                url: 'prosesProduk.php',
                 type: 'POST',
                 data: formData,
-                contentType: false, // Jangan menetapkan tipe konten
-                processData: false, // Jangan memproses data
+                contentType: false,
+                processData: false,
                 dataType: 'json',
                 success: function (response) {
                     $('#isi-table').empty();
