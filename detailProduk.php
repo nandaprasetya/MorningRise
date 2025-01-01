@@ -39,7 +39,14 @@
         <div class="nav-link">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
-            <a href="produk.php">Produk</a>
+            <a href="produk.php">Product</a>
+            <?php if (isset($_SESSION['role'])):
+                 if ($_SESSION['role'] === 'admin'):
+            ?>
+                <a href="dashboardProduk.php">Dashboard Produk</a>
+                <a href="kategori.php">Dashboard Kategori</a>
+            <?php endif; ?>
+            <?php endif; ?>
             <?php if (isset($_SESSION['id_user'])): ?>
             <div class="ml-6 flex">
                 <a href="cart.php">

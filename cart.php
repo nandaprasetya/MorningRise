@@ -51,12 +51,19 @@ $grandTotal = $subtotal - $discountAmount;
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="flex justify-between">
+    <nav class="flex justify-between">
         <a class="nav-logo font-semibold" href="index.php">MORNING RISE</a>
         <div class="nav-link">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
-            <a href="produk.php">Produk</a>
+            <a href="produk.php">Product</a>
+            <?php if (isset($_SESSION['role'])):
+                 if ($_SESSION['role'] === 'admin'):
+            ?>
+                <a href="dashboardProduk.php">Dashboard Produk</a>
+                <a href="kategori.php">Dashboard Kategori</a>
+            <?php endif; ?>
+            <?php endif; ?>
             <?php if (isset($_SESSION['id_user'])): ?>
             <div class="ml-6 flex">
                 <a href="cart.php">

@@ -36,6 +36,7 @@ if($action == 'signup'){
             if (password_verify($password, $user['password'])) {
                 $_SESSION['id_user'] = $user['id_user'];
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
                 header("Location: index.php");
                 exit;
             } else {
@@ -47,6 +48,14 @@ if($action == 'signup'){
             exit;
         }
     }
+}else if($action == 'logout'){
+    session_start();
+    session_unset();
+
+    session_destroy();
+
+    header("Location: index.php");
+exit;
 }
 
 ?>

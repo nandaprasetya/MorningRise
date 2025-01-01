@@ -30,7 +30,7 @@ if (isset($_SESSION['id_user'])) {
             </div>
         </div>
         <div class="image-login">
-            <img src="media/sonny-mauricio-yH1tkwJs06M-unsplash.jpg" alt="">
+            <img src="media/bg-login.jpg" alt="">
         </div>
     </div>
 </body>

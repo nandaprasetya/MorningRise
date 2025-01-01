@@ -5,6 +5,7 @@
     margin: 0px;
     padding: 0px;
     font-family: "Poppins", serif;
+    text-decoration: none;
 }
 
 body{
@@ -445,4 +446,340 @@ nav .nav-link{
 #checkout-btn h1{
     font-weight: 500;
     letter-spacing: 1px;
+}
+
+.outer-profile-area{
+    padding: 100px 3% 40px;
+}
+
+.header-profile-area{
+    width: fit-content;
+    border-radius: 20px;
+    border: 1px solid #c7c7c7;
+}
+
+.innner-header-profile {
+    margin-bottom: 30px;
+}
+
+.innner-header-profile img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.text-header-profile h1{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+}
+
+.text-header-profile a{
+    border: 1px solid #a8a8a8;
+    padding: 8px 24px;
+    border-radius: 10px;
+}
+
+.menu-profile img{
+    width: 25px;
+    height: 25px;
+}
+
+.menu-profile a{
+    margin-bottom: 25px;
+}
+
+.area-profile-content{
+    width: 100%;
+    padding: 30px;
+    border: 1px solid #c7c7c7;
+    border-radius: 20px;
+    margin: 0px 30px;
+}
+
+.area-total-order, .area-whishlist-order{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.area-profile-content h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.box-total-order{
+    width: 30%;
+    height: fit-content;
+    padding: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+}
+
+.box-total-order:hover{
+    background-color: #FBBF24;
+}
+
+.box-total-order:hover h2, .box-total-order:hover h3{
+    color: #f8f8f8;
+}
+
+.box-total-order h2{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.box-total-order h3{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.home{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.home video{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 130%;
+    object-fit: cover;
+    object-position: center;
+    padding: 0;
+}
+
+.text-home{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(12, 12, 12, 0.3);
+}
+
+.text-home h1{
+    color: #fff;
+    font-weight: 400;
+    font-size: 70px;
+}
+
+.home .scroll-bottom{
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.home .scroll-bottom .inner-scroll-bottom{
+    width: fit-content;
+    aspect-ratio: 1/1;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    transform: translateY(50%);
+}
+
+.home .scroll-bottom p{
+    padding: 60px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 14px;
+    line-height: 100%;
+    height: fit-content;
+}
+
+.about-home{
+    width: 100%;
+    height: 100vh;
+    margin-top: 100px;
+    padding: 40px 3% 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.left-img-home-about, .right-img-home-about{
+    width: 20%;
+    height: 100%;
+    display: flex;
+}
+
+.right-img-home-about{
+    align-items: end;
+}
+
+.left-img-home-about img{
+    transform: rotate(-8deg);
+}
+
+.right-img-home-about img{
+    transform: rotate(8deg);
+}
+
+.left-img-home-about img, .right-img-home-about img{
+    width: 100%;
+    height: fit-content;
+    aspect-ratio: 3/4;
+}
+
+.text-home-about{
+    width: 35%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-home h1{
+    font-size: 50px;
+    letter-spacing: 5px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.about-home p{
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    color: #4e4e4e;
+}
+
+.about-home a, .more-produk-home a{
+    width: fit-content;
+    padding: 8px 16px;
+    border-radius: 32px;
+    margin-top: 40px;
+    border: 1px solid #898989;
+    color: #1A1A1D;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.about-home a span, .more-produk-home a span{
+    transition: 0.3s ease;
+    margin-left: 30px;
+}
+
+.about-home a .about-home-circle, .more-produk-home a .produk-home-circle{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 20px;
+    background-color: #1A1A1D;
+    position: absolute;
+    z-index: -1;
+    left: 15px;
+    transition: 0.5s ease;
+}
+
+.about-home a:hover, .more-produk-home a:hover{
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.about-home a:hover span, .more-produk-home a:hover span{
+    transition: 0.3s ease;
+    transform: translateX(-15px);
+}
+
+.about-home a:hover .about-home-circle, .more-produk-home a:hover .produk-home-circle{
+    width: 200px;
+    height: 200px;
+    transform: scale(1.5) translateY(-20%) translateX(10%);
+    left: 0%;
+    transition: 0.5s ease;
+    background-color: #1A1A1D;
+}
+
+.header-area-produk{
+    margin: 100px 0px 30px;
+}
+
+.header-area-produk h1{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.more-produk-home{
+    margin-bottom: 40px;
+}
+
+.about{
+    background-color: #b0b0b0;
+    position: relative;
+}
+
+.about img{
+    width: 30%;
+}
+
+.text-about{
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-about h2{
+    font-size: 80px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.identitas-about{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 0px 5%;
+}
+
+.identitas-about h1{
+    font-size: 35px;
+    font-weight: 500;
+    color: #fff;
+    text-align: end;
+}
+
+.outer-title-tugas{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    overflow: hidden;
+}
+
+.inner-title-tugas{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+}
+
+.inner-title-tugas .box-title-tugas{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    min-width: fit-content;
+    margin: 0px 20px;
+    display: flex;
+    white-space: nowrap;
 }

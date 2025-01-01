@@ -1,6 +1,6 @@
 <?php
-session_start();
 include 'koneksi.php';
+session_start();
 $action = $_POST['action'];
 
 if ($action == 'create') {
@@ -228,5 +228,20 @@ if($action == 'updateSummary'){
         'grandTotal' => $grandTotal,
         'cartItems' => $cartItems
     ]);
+}
+
+if($action === 'createProdukKategori'){
+    $id_produk = $_POST['id_produk'] ?? null;
+    $id_kategori = $_POST['id_kategori'] ?? null;
+
+    if (!empty($id_produk) && !empty($id_kategori)) {
+        $stmt = $conn->prepare("INSERT INTO produk_kategori (id_produk, id_kategori) VALUES (?, ?)");
+        $stmt->bind_param("ii", $id_produk, $id_kategori);
+        $stmt->execute();
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Produk dan kategori harus dipilih.']);
+    }
+    exit;
 }
 ?>

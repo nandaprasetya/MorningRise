@@ -89,7 +89,7 @@ if($action == 'search'){
             }
         } else {
             echo '<div class="w-full py-7 h-full flex items-center justify-center font-medium">';
-            echo '<h1 class="text-2xl">Produk tidak ditemukan.</h1>';
+            echo '<h1 class="text-2xl">Product Not Found.</h1>';
             echo '</div>';
         }
     }

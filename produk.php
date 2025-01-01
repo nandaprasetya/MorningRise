@@ -28,12 +28,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="flex justify-between">
+    <nav class="flex justify-between">
         <a class="nav-logo font-semibold" href="index.php">MORNING RISE</a>
         <div class="nav-link">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
-            <a href="produk.php">Produk</a>
+            <a href="produk.php">Product</a>
+            <?php if (isset($_SESSION['role'])):
+                 if ($_SESSION['role'] === 'admin'):
+            ?>
+                <a href="dashboardProduk.php">Dashboard Produk</a>
+                <a href="kategori.php">Dashboard Kategori</a>
+            <?php endif; ?>
+            <?php endif; ?>
             <?php if (isset($_SESSION['id_user'])): ?>
             <div class="ml-6 flex">
                 <a href="cart.php">
@@ -44,15 +51,15 @@
                 </a>
             </div>
             <?php else: ?>
-            <a href="">Log in</a>
-            <a href="">Sign Up</a>
+            <a href="login.php">Log in</a>
+            <a href="signup.php">Sign Up</a>
             <?php endif; ?>
         </div>
     </nav>
     <div class="header-view-produk px-10 w-full h-fit">
         <div class="search-area w-full h-fit flex justify-center">
             <form id="searchForm" class="outer-search rounded-md bg-gray-100 w-3/6 relative flex items-center">
-                <input id="search" class="py-4 pl-5 focus:outline-none focus:ring-0 rounded-md w-full bg-gray-100" type="text" name="search" placeholder="Mau Makan Apa?">
+                <input id="search" class="py-4 pl-5 focus:outline-none focus:ring-0 rounded-md w-full bg-gray-100" type="text" name="search" placeholder="What do you want to eat?">
                 <button type="submit" class="search-btn h-full flex items-center justify-center">
                     <img src="media/search.png" alt="">
                 </button>
@@ -65,7 +72,7 @@
                     <h5>Filter</h5>
                 </div>
                 <div class="filter-popup hidden w-fit h-fit flex flex-col absolute bg-white border border-solid border-slate-200 rounded mt-1 p-4 z-[12]">
-                    <h6 class="py-1 w-fit mb-2 border-b-2 border-black border-solid">HARGA</h6>
+                    <h6 class="py-1 w-fit mb-2 border-b-2 border-black border-solid">PRICE</h6>
                     <div class="area-filter-harga flex">
                         <div class="min-harga mr-2">
                             <p>Minimum</p>
@@ -75,7 +82,7 @@
                             </div>
                         </div>
                         <div class="max-harga ml-2">
-                            <p>Maksimum</p>
+                            <p>Maximum</p>
                             <div class="box-filter-harga w-fit pl-3 flex items-center border border-solid border-slate-300 rounded">
                                 <p>Rp.</p>
                                 <input id="max-harga" class="border-none rounded focus:outline-none focus:ring-0" style="width: 150px;" type="number" min="0" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
@@ -84,16 +91,16 @@
                     </div>
                     <div class="w-full flex">
                         <div id="apply-filter" class="flex mr-1 w-3/6 justify-center items-center mt-3 py-3 bg-amber-300 text-sm tracking-wider font-semibold" style="cursor: pointer;">
-                            <p>TERAPKAN</p>
+                            <p>APPLY</p>
                         </div>
                         <div id="reset-filter" class="flex ml-1 w-3/6 justify-center items-center mt-3 py-3 bg-red-500 text-white text-sm tracking-wider font-semibold" style="cursor: pointer;">
-                            <p>HAPUS</p>
+                            <p>DELETE</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="kategori-produk w-fit flex justify-center">
-                <h6 data-kategori="semua" class="list-kategori kategori-active text-sm mx-1 font-medium px-6 py-2 rounded-md bg-gray-100">Semua</h6>
+                <h6 data-kategori="semua" class="list-kategori kategori-active text-sm mx-1 font-medium px-6 py-2 rounded-md bg-gray-100">All</h6>
                 <?php  
                     if($resultKategori->num_rows > 0){ 
                         while ($rowKategori = $resultKategori->fetch_assoc()) {
@@ -102,10 +109,10 @@
                 <?php } }?>
             </div>
             <select name="sorting" id="sorting-section" class="px-3 py-3 rounded-md focus:outline-none focus:ring-0 border border-slate-200 border-solid font-medium">
-                <option value="terlaris">Paling Sesuai</option>
-                <option value="terbaru">Terbaru</option>
-                <option value="termurah">Termurah</option>
-                <option value="termahal">Termahal</option>
+                <option value="terlaris">Recommended</option>
+                <option value="terbaru">Newest</option>
+                <option value="termurah">Lowest Price</option>
+                <option value="termahal">Highest Price</option>
             </select>
         </div>
     </div>
@@ -157,7 +164,18 @@
     </div>
 
     <script src="plugins/jquery.js"></script>
+    <script src="plugins/gsap.min.js"></script>
+    <script src="plugins/scrollTrigger.min.js"></script>
+    <script src="plugins/lenis.min.js"></script>
     <script>
+        const lenis = new Lenis();
+        lenis.on('scroll', (e) => {
+        });
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
         $(document).on('mouseenter', '.box-produk', function() {
             $(this).find(".box-gizi-produk").addClass("active");
             $(this).find(".col-gizi-produk").addClass("active");
