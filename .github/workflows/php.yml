@@ -22,5 +22,5 @@ jobs:
           port: 2121
           script: |
             cd /var/www/testnanda/MorningRise
-            git pull origin main
+            git pull origin master
             sudo systemctl reload nginx
