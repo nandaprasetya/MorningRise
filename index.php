@@ -60,7 +60,7 @@
     <div class="home">
         <div class="text-home">
             <div class=""></div>
-            <h1>Happiness is Fresh Out <br> of the Oven Testing Video UAS</h1>
+            <h1>Happiness is Fresh Out <br> of the Oven UAS MJS</h1>
             <div class="scroll-bottom">
                 <div class="inner-scroll-bottom">
                     <p>SCROLL</p>
